@@ -1,0 +1,45 @@
+services:
+  postgres:
+    image: postgres:16
+
+    container_name: ap2_postgres
+
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: bookinghub
+
+    ports:
+      - "5433:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./wal_archive:/wal_archive
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d bookinghub"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+
+    container_name: fastapi_app
+
+    restart: always
+
+    ports:
+      - "8000:8000"
+
+    environment:
+      DATABASE_URL: postgresql://admin:admin@postgres:5432/bookinghub
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+volumes:
+  postgres_data:
