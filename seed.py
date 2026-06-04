@@ -87,7 +87,7 @@ print('Inserindo hotéis...')
 
 hotel_ids = []
 
-for _ in range(120):
+for _ in range(500):
     cur.execute(
         '''
         INSERT INTO hotels(name, city, country, stars, address)
@@ -164,7 +164,7 @@ print('Inserindo clientes...')
 
 customer_ids = []
 
-for _ in range(3000):
+for _ in range(10000):
     cur.execute(
         '''
         INSERT INTO customers(
@@ -195,7 +195,7 @@ print('Inserindo voos...')
 
 flight_ids = []
 
-for i in range(2500):
+for i in range(25000):
     origin = random.randint(1, len(AIRPORTS))
     destination = random.randint(1, len(AIRPORTS))
 
@@ -251,7 +251,7 @@ print('Inserindo reservas de voo...')
 
 flight_reservation_ids = []
 
-for _ in range(5000):
+for _ in range(15000):
     status = random.choice(RESERVATION_STATUS)
 
     cur.execute(
@@ -284,7 +284,7 @@ print('Inserindo reservas de hotel...')
 
 hotel_reservation_ids = []
 
-for _ in range(5000):
+for _ in range(10000):
     check_in = fake.date_between(start_date='-60d', end_date='+120d')
     check_out = check_in + timedelta(days=random.randint(1, 10))
 
@@ -322,7 +322,7 @@ conn.commit()
 # =========================
 print('Inserindo pagamentos...')
 
-for _ in range(7000):
+for _ in range(20000):
     reservation_type = random.choice(['flight', 'hotel'])
 
     if reservation_type == 'flight':
@@ -359,4 +359,3 @@ cur.close()
 conn.close()
 
 print('\nBanco populado com sucesso!')
-print('Mais de 10.000 registros inseridos.')
