@@ -4,8 +4,8 @@ FROM python:3.11-slim
 # Define o diretório de trabalho dentro do container
 WORKDIR /app
 
-# Copia a aplicação para o container
-COPY api/* /app
+# Copia os requisitos para o container
+COPY api/requirements.txt /app
 
 # Instala as dependências
 RUN pip install --no-cache-dir -r requirements.txt
