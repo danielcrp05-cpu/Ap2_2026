@@ -6,7 +6,7 @@ SELECT
 FROM
     rooms r
 WHERE
-    r.hotel_id = :hotel_id
+    r.hotel_id = 2
     AND r.id NOT IN (
         SELECT
             hr.room_id
@@ -14,6 +14,6 @@ WHERE
             hotel_reservations hr
         WHERE
             hr.status != 'cancelled'
-            AND hr.check_in < :check_out
-            AND hr.check_out > :check_in
+            AND hr.check_in < '2026-12-25'
+            AND hr.check_out > '2026-12-26'
     );
