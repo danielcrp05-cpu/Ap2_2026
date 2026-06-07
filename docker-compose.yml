@@ -14,8 +14,9 @@ services:
 
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./wal_archive:/wal_archive
+      - ./database/wal_archive:/wal_archive
       - ./database/schema.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./database/postgresql.conf:/etc/postgresql/postgresql.conf
 
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U admin -d bookinghub"]
@@ -23,7 +24,7 @@ services:
       timeout: 5s
       retries: 5
     
-    command: ["postgres", "-c", "log_statement=all"]
+    command: ["postgres", "-c", "config_file=/etc/postgresql/postgresql.conf"]
 
   api:
     build:
