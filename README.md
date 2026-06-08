@@ -7,7 +7,7 @@ BookingHub: Plataforma de Reservas com Alta Concorrência
 Para executar os contêineres Docker, que executam o banco de dados e a API, utilize o seguinte comando na raiz do repositório clonado:
 
 ```bash
-docker compose up
+docker compose up -d
 ```
 
 ## 2. Configuração do Banco de Dados
@@ -21,4 +21,4 @@ python seed.py
 
 ## 3. Acesso à API
 
-A API web pode ser acessada em http://localhost:8000/docs
+A API web pode ser acessada em <http://localhost:8000/docs>
