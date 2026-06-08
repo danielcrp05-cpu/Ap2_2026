@@ -2,9 +2,9 @@ import threading
 import requests
 import psycopg2
 
-API_URL = "http://positivo-server:8000"
+API_URL = "http://localhost:8000"
 DB_CONFIG = {
-    "host": "positivo-server",
+    "host": "localhost",
     "database": "bookinghub",
     "user": "admin",
     "password": "admin",
